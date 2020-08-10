@@ -1,0 +1,4 @@
+name: ActionBlock
+version: ${project.version}
+main: team.cloudly.ActionClass
+api-version: 1.16
