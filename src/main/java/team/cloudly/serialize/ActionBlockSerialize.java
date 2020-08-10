@@ -9,16 +9,11 @@ import java.lang.reflect.Type;
 
 public class ActionBlockSerialize implements GsonAdapter<ActionBlock> {
 
-    private ActionClass actionClass;
-    public ActionBlockSerialize(ActionClass actionClass){
-        this.actionClass = actionClass;
-    }
-
     @Override
     public ActionBlock deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         ActionBlock actionBlock = new ActionBlock();
         JsonArray jsonArray = json.getAsJsonArray();
-        
+
         return null;
     }
 
