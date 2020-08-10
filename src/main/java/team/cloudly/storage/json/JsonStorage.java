@@ -17,7 +17,7 @@ public class JsonStorage implements Storage {
 
     @Override
     public void saveAll(List<ActionBlock> actionBlocks) {
-        
+
     }
 
     @Override

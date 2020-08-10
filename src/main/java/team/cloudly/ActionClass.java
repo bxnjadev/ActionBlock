@@ -6,6 +6,7 @@ import team.cloudly.actions.ActionCache;
 import team.cloudly.actions.ActionCacheImpl;
 import team.cloudly.actions.FactoryAction;
 import team.cloudly.actions.FactoryActionImpl;
+import team.cloudly.commands.ActionCommand;
 import team.cloudly.files.Configuration;
 import team.cloudly.listener.InteractBlockListener;
 import team.cloudly.storage.Storage;
@@ -29,11 +30,16 @@ public final class ActionClass extends JavaPlugin {
         registerCommands();
 
         factoryAction = new FactoryActionImpl();
+        loadFiles();
     }
 
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+    }
+
+    public Storage getStorage(){
+        return storage;
     }
 
     public ActionCache getActionCache(){
@@ -53,7 +59,7 @@ public final class ActionClass extends JavaPlugin {
     }
 
     private void registerCommands(){
-
+        this.getCommand("actionblock").setExecutor(new ActionCommand(this));
     }
 
 }

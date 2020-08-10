@@ -8,8 +8,6 @@ public class FactoryActionImpl implements FactoryAction {
     @Override
     public Action getAction(ActionType actionType, String identifier, ActionClass actionClass) {
         switch (actionType){
-            case MESSAGE:
-                return new ActionMessage(identifier);
             case TITLE:
 
             break;
@@ -19,6 +17,9 @@ public class FactoryActionImpl implements FactoryAction {
             case LOCATION:
 
             break;
+
+            default:
+                new ActionMessage(identifier);
         }
         return null;
     }
