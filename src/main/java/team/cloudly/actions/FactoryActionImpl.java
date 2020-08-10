@@ -10,13 +10,9 @@ public class FactoryActionImpl implements FactoryAction {
         switch (actionType){
             case TITLE:
 
-            break;
             case ACTIONBAR:
 
-            break;
             case LOCATION:
-
-            break;
 
             default:
                 new ActionMessage(identifier);

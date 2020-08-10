@@ -1,6 +1,5 @@
 package team.cloudly.storage.json;
 
-import com.google.gson.JsonArray;
 import org.bukkit.block.Block;
 import org.bukkit.plugin.Plugin;
 import team.cloudly.ActionClass;
@@ -21,6 +20,7 @@ public class JsonStorage implements Storage {
     @Override
     public void saveAll(List<ActionBlock> actionBlocks) {
         JsonFile jsonFile = new JsonFile(plugin.getDataFolder(),"blocks");
+        jsonFile.writeFile(ActionClass.getGson().toJson(actionBlocks));
     }
 
     @Override
