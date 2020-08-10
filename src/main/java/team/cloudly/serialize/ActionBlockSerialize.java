@@ -17,7 +17,8 @@ public class ActionBlockSerialize implements GsonAdapter<ActionBlock> {
     @Override
     public ActionBlock deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
         ActionBlock actionBlock = new ActionBlock();
-
+        JsonArray jsonArray = json.getAsJsonArray();
+        
         return null;
     }
 

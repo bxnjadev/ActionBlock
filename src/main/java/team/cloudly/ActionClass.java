@@ -23,8 +23,6 @@ public final class ActionClass extends JavaPlugin {
 
     private static Gson gson;
 
-    private Configuration configuration;
-
     @Override
     public void onEnable() {
 
@@ -55,7 +53,7 @@ public final class ActionClass extends JavaPlugin {
     }
 
     private void loadFiles(){
-        configuration = new Configuration(this,"configuration");
+        new Configuration(this,"config");
     }
 
     private void registerListeners(){
