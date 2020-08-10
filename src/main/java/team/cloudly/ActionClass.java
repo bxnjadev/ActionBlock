@@ -1,5 +1,7 @@
 package team.cloudly;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import team.cloudly.actions.ActionCache;
@@ -19,6 +21,8 @@ public final class ActionClass extends JavaPlugin {
     private Storage storage;
     private FactoryAction factoryAction;
 
+    private static Gson gson;
+
     private Configuration configuration;
 
     @Override
@@ -28,6 +32,10 @@ public final class ActionClass extends JavaPlugin {
         storage = new StorageFactoryImpl(this).getStorage(StorageMethod.JSON);
         registerListeners();
         registerCommands();
+
+        gson = new GsonBuilder()
+                .setPrettyPrinting()
+                .create();
 
         factoryAction = new FactoryActionImpl();
         loadFiles();
@@ -60,6 +68,10 @@ public final class ActionClass extends JavaPlugin {
 
     private void registerCommands(){
         this.getCommand("actionblock").setExecutor(new ActionCommand(this));
+    }
+
+    public static Gson getGson(){
+        return gson;
     }
 
 }

@@ -28,7 +28,12 @@ public class ActionCommand implements CommandExecutor {
         }
 
         if(args.length == 0){
+            player.sendMessage("");
+            return true;
+        }
 
+        if(args[0].equalsIgnoreCase("reload")){
+            plugin.reloadConfig();
             return true;
         }
 
