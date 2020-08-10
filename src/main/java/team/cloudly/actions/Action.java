@@ -6,4 +6,6 @@ public interface Action {
 
     void execute(Player player);
 
+    ActionType getActionType();
+
 }

@@ -1,6 +1,7 @@
 package team.cloudly.storage;
 
 import org.bukkit.plugin.Plugin;
+import team.cloudly.storage.json.JsonStorage;
 
 public class StorageFactoryImpl implements StorageFactory {
 
@@ -11,6 +12,6 @@ public class StorageFactoryImpl implements StorageFactory {
 
     @Override
     public Storage getStorage(StorageMethod storageMethod) {
-        return null;
+        return new JsonStorage(plugin);
     }
 }

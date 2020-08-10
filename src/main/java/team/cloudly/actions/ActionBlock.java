@@ -27,4 +27,8 @@ public class ActionBlock {
         actions.add(action);
     }
 
+    public List<Action> getActions(){
+        return actions;
+    }
+
 }
