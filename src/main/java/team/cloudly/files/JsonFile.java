@@ -1,46 +1,54 @@
 package team.cloudly.files;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
+import com.google.gson.JsonElement;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.BufferedReader;
 
 public class JsonFile {
 
-    private File file;
-    private final File folder;
+    private final File file;
     private final String fileName;
 
     public JsonFile(File folder, String fileName){
-        this.folder = folder;
         this.fileName = fileName;
-        loadFile();
-    }
-
-    private void loadFile(){
         file = new File(folder,fileName+".json");
-        if(!file.exists()){
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        
+        createFileIfNotExists();
     }
 
-    public String getJsonText(){
+    private void createFileIfNotExists(){
+        if(!file.exists()){
+            createFile();
+        }
+    }
+
+    private void createFile(){
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public BufferedReader getBufferedReaderFile(){
         FileReader fileReader = null;
         try {
             fileReader = new FileReader(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        BufferedReader reader = new BufferedReader(fileReader);
+        return new BufferedReader(fileReader);
+    }
 
+    public String getJsonText(){
         String line = "";
 
         StringBuilder builder = new StringBuilder();
+        BufferedReader reader = getBufferedReaderFile();
 
         try {
             while((line = reader.readLine()) != null){
@@ -53,9 +61,8 @@ public class JsonFile {
     }
 
     public void writeFile(String jsonText) {
-        FileWriter fileWriter = null;
         try {
-            fileWriter = new FileWriter(file);
+            FileWriter fileWriter = new FileWriter(file);
             fileWriter.write(jsonText);
             fileWriter.flush();
             fileWriter.close();
@@ -64,32 +71,11 @@ public class JsonFile {
         }
     }
 
-    public void writeFile(JSONObject object){
-        FileWriter fileWriter = null;
-        try {
-            fileWriter = new FileWriter(file);
-            fileWriter.write(object.toJSONString());
-            fileWriter.flush();
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void writeFile(JSONArray object){
-        FileWriter fileWriter = null;
-        try {
-            fileWriter = new FileWriter(file);
-            fileWriter.write(object.toJSONString());
-            fileWriter.flush();
-            fileWriter.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void writeFile(JsonElement object){
+        writeFile(object.getAsString());
     }
 
     public String getFileName(){
         return fileName;
     }
-
 }

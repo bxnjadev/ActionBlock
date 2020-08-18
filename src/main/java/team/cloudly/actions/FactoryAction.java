@@ -4,6 +4,6 @@ import team.cloudly.ActionClass;
 
 public interface FactoryAction {
 
-    Action getAction(ActionType actionType, String identifier, ActionClass actionClass);
+    Action getAction(ActionType actionType, String identifier);
 
 }

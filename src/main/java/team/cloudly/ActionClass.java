@@ -4,13 +4,11 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import team.cloudly.actions.ActionCache;
-import team.cloudly.actions.ActionCacheImpl;
-import team.cloudly.actions.FactoryAction;
-import team.cloudly.actions.FactoryActionImpl;
+import team.cloudly.actions.*;
 import team.cloudly.commands.ActionCommand;
 import team.cloudly.files.Configuration;
 import team.cloudly.listener.InteractBlockListener;
+import team.cloudly.serialize.ActionBlockSerialize;
 import team.cloudly.storage.Storage;
 import team.cloudly.storage.StorageFactoryImpl;
 import team.cloudly.storage.StorageMethod;
@@ -31,11 +29,13 @@ public final class ActionClass extends JavaPlugin {
         registerListeners();
         registerCommands();
 
+        factoryAction = new FactoryActionImpl();
+
         gson = new GsonBuilder()
+                .registerTypeAdapter(ActionBlock.class,new ActionBlockSerialize(factoryAction))
                 .setPrettyPrinting()
                 .create();
 
-        factoryAction = new FactoryActionImpl();
         loadFiles();
     }
 
