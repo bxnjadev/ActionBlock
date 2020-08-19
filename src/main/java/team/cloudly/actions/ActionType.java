@@ -5,5 +5,6 @@ public enum ActionType {
     TITLE,
     LOCATION,
     ACTIONBAR,
+    TELEPORT
 
 }

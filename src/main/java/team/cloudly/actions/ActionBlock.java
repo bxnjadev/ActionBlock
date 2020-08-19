@@ -23,7 +23,7 @@ public class ActionBlock {
 
     public void executeActions(Player player) {
         actions.forEach(action -> {
-            action.execute(player);
+            action.getExecutor().execute(player);
         });
     }
 

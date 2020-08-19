@@ -70,5 +70,10 @@
             <version>1.8.8-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <artifactId>SupremeText-Bukkit</artifactId>
+            <groupId>me.supremeproject</groupId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
 </project>

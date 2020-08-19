@@ -1,11 +1,9 @@
 package team.cloudly.actions.action;
 
 import org.bukkit.entity.Player;
-import team.cloudly.actions.Action;
-import team.cloudly.actions.ActionType;
 import team.cloudly.utils.Utils;
 
-public class ActionMessage implements Action {
+public class ActionMessage implements ActionExecutor {
 
     private final String message;
     public ActionMessage(String message){
@@ -18,12 +16,8 @@ public class ActionMessage implements Action {
     }
 
     @Override
-    public ActionType getActionType() {
-        return ActionType.MESSAGE;
+    public String actionSerialize() {
+        return null;
     }
 
-    @Override
-    public String toString() {
-        return message;
-    }
 }

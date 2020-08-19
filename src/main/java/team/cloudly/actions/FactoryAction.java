@@ -1,9 +1,9 @@
 package team.cloudly.actions;
 
-import team.cloudly.ActionClass;
+import team.cloudly.actions.action.ActionExecutor;
 
 public interface FactoryAction {
 
-    Action getAction(ActionType actionType, String identifier);
+    ActionExecutor getActionExecutor(ActionType actionType, String identifier);
 
 }
