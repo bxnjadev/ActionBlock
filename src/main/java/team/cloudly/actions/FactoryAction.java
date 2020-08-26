@@ -1,9 +1,9 @@
 package team.cloudly.actions;
 
-import team.cloudly.actions.action.ActionExecutor;
+import java.util.Map;
 
 public interface FactoryAction {
 
-    ActionExecutor getActionExecutor(ActionType actionType, String identifier);
+    ActionCache.ActionExecutor getAction(ActionType actionType, Map<String,Object> actionSerialize);
 
 }

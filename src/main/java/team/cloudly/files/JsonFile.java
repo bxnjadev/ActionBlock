@@ -17,10 +17,9 @@ public class JsonFile {
     public JsonFile(File folder, String fileName){
         this.fileName = fileName;
         file = new File(folder,fileName+".json");
-        createFileIfNotExists();
     }
 
-    private void createFileIfNotExists(){
+    public void createFileIfNotExists(){
         if(!file.exists()){
             createFile();
         }
@@ -73,6 +72,10 @@ public class JsonFile {
 
     public void writeFile(JsonElement object){
         writeFile(object.getAsString());
+    }
+
+    public File getFile(){
+        return file;
     }
 
     public String getFileName(){

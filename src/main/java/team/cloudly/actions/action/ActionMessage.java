@@ -1,7 +1,11 @@
 package team.cloudly.actions.action;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
-import team.cloudly.utils.Utils;
+import team.cloudly.actions.ActionExecutor;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ActionMessage implements ActionExecutor {
 
@@ -12,12 +16,14 @@ public class ActionMessage implements ActionExecutor {
 
     @Override
     public void execute(Player player) {
-        player.sendMessage(Utils.colorize(message));
+        player.sendMessage(ChatColor.translateAlternateColorCodes('&',message));
     }
 
     @Override
-    public String actionSerialize() {
-        return null;
-    }
+    public Map<String, Object> serialize() {
+        Map<String,Object> serializeAction = new HashMap<>();
+        serializeAction.put("message",message);
 
+        return serializeAction;
+    }
 }

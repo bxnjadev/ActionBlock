@@ -5,11 +5,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+import team.cloudly.actions.ActionBlock;
+import team.cloudly.actions.ActionBlockType;
 import team.cloudly.actions.ActionCache;
 
 public class InteractBlockListener implements Listener {
 
-    private ActionCache actionCache;
+    private final ActionCache actionCache;
     public InteractBlockListener(ActionCache actionCache){
         this.actionCache = actionCache;
     }
@@ -19,9 +21,17 @@ public class InteractBlockListener implements Listener {
         Player player = event.getPlayer();
         Block block = event.getClickedBlock();
 
-        if(!actionCache.blockHasAction(block)) return;
+        if(!actionCache.blockHasAction(block)) {
+            return;
+        }
 
-        actionCache.findActionBlock(block).executeActions(player);
+        ActionBlock actionBlock = actionCache.findActionBlock(block);
+
+        if(!(actionBlock.getActionBlockType() == ActionBlockType.INTERACT)){
+            return;
+        }
+
+        actionBlock.executeActions(player);
     }
 
 }

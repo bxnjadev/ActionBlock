@@ -2,6 +2,10 @@ package team.cloudly.actions.action;
 
 import me.supremeproject.SupremeText;
 import org.bukkit.entity.Player;
+import team.cloudly.actions.ActionExecutor;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ActionActionBar implements ActionExecutor {
 
@@ -18,8 +22,10 @@ public class ActionActionBar implements ActionExecutor {
     }
 
     @Override
-    public String actionSerialize() {
-        return message;
-    }
+    public Map<String, Object> serialize() {
+        Map<String,Object> serializeAction = new HashMap<>();
 
+        serializeAction.put("message",message);
+        return serializeAction;
+    }
 }

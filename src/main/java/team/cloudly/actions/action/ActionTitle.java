@@ -3,6 +3,11 @@ package team.cloudly.actions.action;
 import me.supremeproject.SupremeText;
 import me.supremeproject.objects.Title;
 import org.bukkit.entity.Player;
+import team.cloudly.actions.ActionCache;
+import team.cloudly.actions.ActionExecutor;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ActionTitle implements ActionExecutor {
 
@@ -19,8 +24,16 @@ public class ActionTitle implements ActionExecutor {
     }
 
     @Override
-    public String actionSerialize() {
-        return null;
+    public Map<String, Object> serialize() {
+        Map<String,Object> serializeAction = new HashMap<>();
+
+        serializeAction.put("title",title.getTitle());
+        serializeAction.put("subtitle",title.getSubtitle());
+        serializeAction.put("FadeInTime",title.getFadeInTime());
+        serializeAction.put("FadeShowTime",title.getFadeShowTime());
+        serializeAction.put("FadeOutTime",title.getFadeOutTime());
+
+        return serializeAction;
     }
 
 }

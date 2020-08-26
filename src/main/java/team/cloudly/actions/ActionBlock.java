@@ -8,35 +8,36 @@ import java.util.List;
 
 public class ActionBlock {
 
-    private final List<Action> actions;
-    private final Block block;
+    private final List<ActionExecutor> actions;
+    private final ActionBlockType actionBlockType;
+    private final String permission = "";
 
-    public ActionBlock(Block block, List<Action> actions){
+    public ActionBlock(ActionBlockType actionBlockType, List<ActionExecutor> actions){
         this.actions = actions;
-        this.block = block;
+        this.actionBlockType = actionBlockType;
     }
 
-    public ActionBlock(Block block) {
+        public ActionBlock(ActionBlockType actionBlockType) {
         this.actions = new ArrayList<>();
-        this.block = block;
+        this.actionBlockType = actionBlockType;
     }
 
     public void executeActions(Player player) {
         actions.forEach(action -> {
-            action.getExecutor().execute(player);
+            action.execute(player);
         });
     }
 
-    public void addAction(Action action){
-        actions.add(action);
+    public void addAction(ActionExecutor actionExecutor){
+        actions.add(actionExecutor);
     }
 
-    public List<Action> getActions(){
+    public List<ActionExecutor> getActions(){
         return actions;
     }
 
-    public Block getBlock(){
-        return block;
+    public ActionBlockType getActionBlockType(){
+        return actionBlockType;
     }
 
 }

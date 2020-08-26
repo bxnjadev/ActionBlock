@@ -2,11 +2,14 @@ package team.cloudly.actions.action;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import team.cloudly.actions.ActionExecutor;
 
-public class ActionLocation implements ActionExecutor {
+import java.util.Map;
+
+public class ActionTeleport implements ActionExecutor {
 
     private final Location location;
-    public ActionLocation(Location location){
+    public ActionTeleport(Location location){
         this.location = location;
     }
 
@@ -16,8 +19,7 @@ public class ActionLocation implements ActionExecutor {
     }
 
     @Override
-    public String actionSerialize() {
-        return "";
+    public Map<String, Object> serialize() {
+        return location.serialize();
     }
-
 }
